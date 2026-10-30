@@ -119,6 +119,7 @@
             <li>Escolha uma letra pelo teclado da tela ou do computador.</li>
             <li>Letras certas aparecem em todas as posições da palavra. Acentos e cedilha contam: a letra C também revela Ç.</li>
             <li>Cada letra errada desenha uma parte do personagem. Com 6 erros, a partida termina.</li>
+            <li>Você também pode tentar adivinhar a palavra completa; se errar, a partida termina.</li>
             <li>Descubra todas as letras antes disso para vencer.</li>
           </ul>
         </div>
@@ -220,6 +221,22 @@
 
             <!-- Mensagens de acerto, erro e resultado -->
             <p id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+
+            <form id="form-palavra" class="word-guess" novalidate>
+              <label class="word-guess__label" for="tentativa-palavra">Já sabe a palavra? Tente adivinhar</label>
+              <div class="word-guess__controls">
+                <input
+                  type="text"
+                  id="tentativa-palavra"
+                  class="word-guess__input"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-describedby="word-guess-help"
+                >
+                <button type="submit" class="btn btn--action">Tentar palavra</button>
+              </div>
+              <p id="word-guess-help" class="word-guess__help">Uma resposta incorreta encerra a partida.</p>
+            </form>
 
             <!-- Resultado da partida -->
             <section id="resultado" class="result" aria-labelledby="resultado-titulo" hidden>

@@ -377,8 +377,11 @@ const THEMES = [
   { id: "padrao", label: "Padrão", swatches: ["#C1272C", "#164194", "#FFFFFF"] },
   { id: "escuro", label: "Escuro", swatches: ["#1C1D20", "#3A3C42", "#C9343A"] },
   { id: "azul", label: "Azul tecnológico", swatches: ["#0B2A5B", "#6FB1F2", "#FFFFFF"] },
+  { id: "azul-escuro", label: "Azul escuro", swatches: ["#111B2E", "#263D5A", "#7DBBFA"] },
   { id: "verde", label: "Verde", swatches: ["#1E5B3A", "#A9CDA0", "#F6F2E7"] },
-  { id: "roxo", label: "Roxo", swatches: ["#4B1D7A", "#C7A9EC", "#F6F3FA"] }
+  { id: "verde-escuro", label: "Verde escuro", swatches: ["#14231B", "#2B4935", "#9DD5A8"] },
+  { id: "roxo", label: "Roxo", swatches: ["#4B1D7A", "#C7A9EC", "#F6F3FA"] },
+  { id: "roxo-escuro", label: "Roxo escuro", swatches: ["#21162F", "#45305F", "#C7A9EC"] }
 ];
 
 const DEFAULT_THEME = "padrao";
@@ -551,6 +554,40 @@ function handleGuess(rawLetter) {
   updateAttempts();
   updateWordDescription();
   checkEndOfRound();
+}
+
+function normalizeWordGuess(word) {
+  return toBaseLetter(word).replace(/[^A-Z]/g, "");
+}
+
+function handleWordGuess(rawWord) {
+  if (!state.active) return;
+
+  const guess = normalizeWordGuess(rawWord);
+  if (!guess) {
+    announce("Digite a palavra completa para tentar.", "");
+    return;
+  }
+
+  const answer = normalizeWordGuess(state.entry.palavra);
+  if (guess === answer) {
+    const newlyRevealed = [];
+    state.letters.forEach((item, index) => {
+      if (item.isLetter && !item.revealed) {
+        item.revealed = true;
+        newlyRevealed.push(index);
+      }
+    });
+    revealSlots(newlyRevealed);
+    announce("Você acertou a palavra completa!", "is-hit");
+    checkEndOfRound();
+    return;
+  }
+
+  state.errors = MAX_ERRORS;
+  drawHangman(state.errors);
+  updateAttempts();
+  finishRound(false, `Palpite incorreto. A palavra correta era: ${state.entry.palavra}.`);
 }
 
 function checkEndOfRound() {
@@ -749,6 +786,8 @@ function startRound(level) {
   state.guessed = new Set();
   state.errors = 0;
   state.active = true;
+  els.wordGuessInput.value = "";
+  els.wordGuessInput.disabled = false;
 
   hideResult();
   resetKeyboard();
@@ -803,14 +842,15 @@ function goToStart() {
 /* ==========================================================================
    8. Resultado
    ========================================================================== */
-function finishRound(won) {
+function finishRound(won, lossMessage = null) {
   state.active = false;
   lockKeyboard();
+  els.wordGuessInput.disabled = true;
 
   const word = state.entry.palavra;
   const message = won
     ? "Parabéns! Você descobriu a palavra."
-    : `As tentativas acabaram. A palavra correta era: ${word}.`;
+    : lossMessage || `As tentativas acabaram. A palavra correta era: ${word}.`;
 
   if (!won) revealMissingSlots();
   els.hangman.classList.toggle("is-won", won);
@@ -950,6 +990,12 @@ function bindEvents() {
     if (event.target.name === "tema") applyTheme(event.target.value);
   });
 
+  els.wordGuessForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    handleWordGuess(els.wordGuessInput.value);
+    els.wordGuessInput.value = "";
+  });
+
   document.addEventListener("keydown", handlePhysicalKeyboard);
 }
 
@@ -982,6 +1028,8 @@ function cacheElements() {
 
   els.word = document.getElementById("palavra");
   els.wordDescription = document.getElementById("palavra-descricao");
+  els.wordGuessForm = document.getElementById("form-palavra");
+  els.wordGuessInput = document.getElementById("tentativa-palavra");
   els.feedback = document.getElementById("feedback");
   els.keyboard = document.getElementById("teclado");
 

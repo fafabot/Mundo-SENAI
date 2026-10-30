@@ -111,6 +111,41 @@
   --shadow-md: 0 4px 14px rgba(11, 31, 58, 0.09);
 }
 
+/* ---------------------- Tema azul tecnológico escuro --------------------- */
+[data-theme="azul-escuro"] {
+  --color-bg: #111B2E;
+  --color-surface: #1B2940;
+  --color-surface-alt: #243750;
+  --color-text: #ECF4FF;
+  --color-text-muted: #B4C4D8;
+  --color-border: #3A506D;
+
+  --color-primary: #7DBBFA;
+  --color-primary-hover: #A0D0FF;
+  --color-on-primary: #10233D;
+
+  --color-action: #8BC5FF;
+  --color-action-hover: #B2D9FF;
+  --color-on-action: #10233D;
+  --color-action-soft: #263D5A;
+
+  --color-success: #7DD9B5;
+  --color-on-success: #102A23;
+  --color-danger-bg: #4A292E;
+  --color-danger-text: #FFB8BB;
+  --color-danger-border: #E2575C;
+
+  --color-focus: #FFD166;
+  --color-disabled-bg: #2A374A;
+  --color-disabled-text: #A5B3C5;
+
+  --color-gallows: #C4D5EA;
+  --color-figure: #7DBBFA;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
 /* ----------------------------- Tema verde ---------------------------- */
 [data-theme="verde"] {
   --color-bg: #F6F2E7;
@@ -146,6 +181,41 @@
   --shadow-md: 0 4px 14px rgba(30, 42, 33, 0.09);
 }
 
+/* ----------------------------- Tema verde escuro ------------------------ */
+[data-theme="verde-escuro"] {
+  --color-bg: #14231B;
+  --color-surface: #1D3025;
+  --color-surface-alt: #263D30;
+  --color-text: #EFF7EF;
+  --color-text-muted: #B6C8B9;
+  --color-border: #405B48;
+
+  --color-primary: #9DD5A8;
+  --color-primary-hover: #B8E5C0;
+  --color-on-primary: #14291B;
+
+  --color-action: #A9DDB2;
+  --color-action-hover: #C4EBC9;
+  --color-on-action: #14291B;
+  --color-action-soft: #2B4935;
+
+  --color-success: #93D9A0;
+  --color-on-success: #102A17;
+  --color-danger-bg: #492A29;
+  --color-danger-text: #FFC0B8;
+  --color-danger-border: #E16B5B;
+
+  --color-focus: #FFD166;
+  --color-disabled-bg: #304137;
+  --color-disabled-text: #B0BDB2;
+
+  --color-gallows: #D0DDD1;
+  --color-figure: #9DD5A8;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
 /* ----------------------------- Tema roxo ----------------------------- */
 [data-theme="roxo"] {
   --color-bg: #F6F3FA;
@@ -179,6 +249,41 @@
 
   --shadow-sm: 0 1px 2px rgba(36, 22, 58, 0.06), 0 1px 3px rgba(36, 22, 58, 0.08);
   --shadow-md: 0 4px 14px rgba(36, 22, 58, 0.09);
+}
+
+/* ------------------------------ Tema roxo escuro ------------------------ */
+[data-theme="roxo-escuro"] {
+  --color-bg: #21162F;
+  --color-surface: #2D2040;
+  --color-surface-alt: #39294F;
+  --color-text: #F5EFFC;
+  --color-text-muted: #C8B9D9;
+  --color-border: #59466F;
+
+  --color-primary: #C7A9EC;
+  --color-primary-hover: #D8C2F3;
+  --color-on-primary: #29173F;
+
+  --color-action: #C7A9EC;
+  --color-action-hover: #D8C2F3;
+  --color-on-action: #29173F;
+  --color-action-soft: #45305F;
+
+  --color-success: #8ED9AA;
+  --color-on-success: #14291B;
+  --color-danger-bg: #4A2634;
+  --color-danger-text: #FFB8C6;
+  --color-danger-border: #E25778;
+
+  --color-focus: #FFD166;
+  --color-disabled-bg: #3B3048;
+  --color-disabled-text: #B7AFC0;
+
+  --color-gallows: #D6C9E4;
+  --color-figure: #C7A9EC;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 /* ----------------------- Medidas compartilhadas ---------------------- */
@@ -369,12 +474,16 @@ main {
 
 .theme-picker__options {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--space-2);
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 2px 2px 6px;
 }
 
 .theme-option {
   position: relative;
+  flex: none;
 }
 
 .theme-option input {
@@ -844,6 +953,54 @@ main {
 
 .feedback.is-hit { color: var(--color-success); }
 .feedback.is-miss { color: var(--color-danger-text); }
+
+/* ------------------------- Tentativa da palavra ------------------------- */
+.word-guess {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-alt);
+}
+
+.word-guess__label {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.word-guess__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.word-guess__input {
+  flex: 1 1 220px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.word-guess__input:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.word-guess__input:disabled {
+  background: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+}
+
+.word-guess__help {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
 
 /* ------------------------------ Resultado ------------------------------ */
 .result {
