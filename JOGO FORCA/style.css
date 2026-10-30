@@ -1,0 +1,1085 @@
+/* ==========================================================================
+   Forca do Conhecimento — estilos
+   As cores ficam centralizadas em variáveis CSS. Cada tema redefine as
+   mesmas variáveis em [data-theme="..."]; para criar uma nova paleta, basta
+   copiar um bloco, ajustar os valores e registrar o tema em THEMES (script.js).
+   ========================================================================== */
+
+/* --------------------------- Tema padrão --------------------------- */
+:root,
+[data-theme="padrao"] {
+  --color-bg: #F5F6F8;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #FFF6EA;        /* secundária */
+  --color-text: #282828;
+  --color-text-muted: #555B65;
+  --color-border: #D0D0D0;
+
+  --color-primary: #C1272C;
+  --color-primary-hover: #9C1E22;
+  --color-on-primary: #FFFFFF;
+
+  --color-action: #164194;
+  --color-action-hover: #0F2F6E;
+  --color-on-action: #FFFFFF;
+  --color-action-soft: #E6ECF8;
+
+  --color-success: #1E6E3A;
+  --color-on-success: #FFFFFF;
+  --color-danger-bg: #FBE4E5;
+  --color-danger-text: #8F1C20;
+  --color-danger-border: #C1272C;
+
+  --color-focus: #164194;
+  --color-disabled-bg: #E6E7EA;
+  --color-disabled-text: #5F6368;
+
+  --color-gallows: #282828;
+  --color-figure: #C1272C;
+
+  --shadow-sm: 0 1px 2px rgba(40, 40, 40, 0.06), 0 1px 3px rgba(40, 40, 40, 0.08);
+  --shadow-md: 0 4px 14px rgba(40, 40, 40, 0.08);
+}
+
+/* --------------------------- Tema escuro --------------------------- */
+[data-theme="escuro"] {
+  --color-bg: #1C1D20;
+  --color-surface: #26282C;
+  --color-surface-alt: #2F3136;
+  --color-text: #F2F2F2;
+  --color-text-muted: #B9BCC3;
+  --color-border: #4A4D55;
+
+  --color-primary: #C9343A;
+  --color-primary-hover: #A8262C;
+  --color-on-primary: #FFFFFF;
+
+  --color-action: #F29497;
+  --color-action-hover: #F8B5B7;
+  --color-on-action: #1C1D20;
+  --color-action-soft: #3B2C2E;
+
+  --color-success: #7DD39B;
+  --color-on-success: #0F2417;
+  --color-danger-bg: #4A2427;
+  --color-danger-text: #FFB8BB;
+  --color-danger-border: #E2575C;
+
+  --color-focus: #FFD166;
+  --color-disabled-bg: #34363B;
+  --color-disabled-text: #A9ADB4;
+
+  --color-gallows: #C9CCD2;
+  --color-figure: #F0686D;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* ----------------------- Tema azul tecnológico ---------------------- */
+[data-theme="azul"] {
+  --color-bg: #EEF4FB;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #E1EEFB;
+  --color-text: #0B1F3A;
+  --color-text-muted: #3F5470;
+  --color-border: #C3D3E6;
+
+  --color-primary: #0B2A5B;
+  --color-primary-hover: #163F82;
+  --color-on-primary: #FFFFFF;
+
+  --color-action: #1565C0;
+  --color-action-hover: #0D4F9A;
+  --color-on-action: #FFFFFF;
+  --color-action-soft: #DCEBFB;
+
+  --color-success: #0E6B5C;
+  --color-on-success: #FFFFFF;
+  --color-danger-bg: #FCE4E4;
+  --color-danger-text: #A31B1B;
+  --color-danger-border: #C62828;
+
+  --color-focus: #1565C0;
+  --color-disabled-bg: #E3E9F1;
+  --color-disabled-text: #55657A;
+
+  --color-gallows: #0B2A5B;
+  --color-figure: #1565C0;
+
+  --shadow-sm: 0 1px 2px rgba(11, 31, 58, 0.06), 0 1px 3px rgba(11, 31, 58, 0.08);
+  --shadow-md: 0 4px 14px rgba(11, 31, 58, 0.09);
+}
+
+/* ----------------------------- Tema verde ---------------------------- */
+[data-theme="verde"] {
+  --color-bg: #F6F2E7;
+  --color-surface: #FFFDF7;
+  --color-surface-alt: #E4EFDF;
+  --color-text: #1E2A21;
+  --color-text-muted: #4C5A4F;
+  --color-border: #CFD8C6;
+
+  --color-primary: #1E5B3A;
+  --color-primary-hover: #154429;
+  --color-on-primary: #FFFFFF;
+
+  --color-action: #3A7350;
+  --color-action-hover: #2C5B3F;
+  --color-on-action: #FFFFFF;
+  --color-action-soft: #DDEBD9;
+
+  --color-success: #2E6B30;
+  --color-on-success: #FFFFFF;
+  --color-danger-bg: #F8E1DC;
+  --color-danger-text: #9A2B1E;
+  --color-danger-border: #B23A2A;
+
+  --color-focus: #1E5B3A;
+  --color-disabled-bg: #E8E4D8;
+  --color-disabled-text: #5C5A50;
+
+  --color-gallows: #4A3A28;
+  --color-figure: #1E5B3A;
+
+  --shadow-sm: 0 1px 2px rgba(30, 42, 33, 0.06), 0 1px 3px rgba(30, 42, 33, 0.08);
+  --shadow-md: 0 4px 14px rgba(30, 42, 33, 0.09);
+}
+
+/* ----------------------------- Tema roxo ----------------------------- */
+[data-theme="roxo"] {
+  --color-bg: #F6F3FA;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EEE5F8;
+  --color-text: #24163A;
+  --color-text-muted: #574A6B;
+  --color-border: #D8CCE8;
+
+  --color-primary: #4B1D7A;
+  --color-primary-hover: #3A1560;
+  --color-on-primary: #FFFFFF;
+
+  --color-action: #6D3FB0;
+  --color-action-hover: #56308E;
+  --color-on-action: #FFFFFF;
+  --color-action-soft: #EEE5FA;
+
+  --color-success: #1F6E43;
+  --color-on-success: #FFFFFF;
+  --color-danger-bg: #FBE3E8;
+  --color-danger-text: #9B1C3A;
+  --color-danger-border: #B8294A;
+
+  --color-focus: #6D3FB0;
+  --color-disabled-bg: #ECE7F2;
+  --color-disabled-text: #5E5370;
+
+  --color-gallows: #24163A;
+  --color-figure: #6D3FB0;
+
+  --shadow-sm: 0 1px 2px rgba(36, 22, 58, 0.06), 0 1px 3px rgba(36, 22, 58, 0.08);
+  --shadow-md: 0 4px 14px rgba(36, 22, 58, 0.09);
+}
+
+/* ----------------------- Medidas compartilhadas ---------------------- */
+:root {
+  --font-family: "Montserrat", "Segoe UI", Roboto, Arial, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --transition: 160ms ease;
+}
+
+/* ============================== Base ============================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+h1, h2, h3, h4, p, ul, dl, dd, fieldset {
+  margin: 0;
+}
+
+h1 { font-size: 48px; line-height: 60px; font-weight: 800; }
+h2 { font-size: 34px; line-height: 50px; font-weight: 700; }
+h3 { font-size: 28px; line-height: 38px; font-weight: 700; }
+h4 { font-size: 18px; line-height: 22px; font-weight: 600; }
+
+fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+main.container {
+  flex: 1;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-7);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Foco visível e consistente em todos os temas */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -60px;
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-action);
+  color: var(--color-on-action);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* ============================= Cabeçalho ============================= */
+.site-header {
+  background: var(--color-surface);
+  border-top: 6px solid var(--color-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-5);
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+}
+
+.brand__title {
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+}
+
+[data-theme="escuro"] .brand__title {
+  color: var(--color-text);
+}
+
+.brand__subtitle {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+/* --------------------------- Seletor de tema --------------------------- */
+.theme-picker__legend {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.theme-picker__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.theme-option {
+  position: relative;
+}
+
+.theme-option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.theme-option label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-2);
+  border: 2px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.theme-option label:hover {
+  border-color: var(--color-action);
+}
+
+.theme-option input:focus-visible + label {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.theme-option input:checked + label {
+  border-color: var(--color-action);
+  background: var(--color-action-soft);
+}
+
+/* Indicador de seleção além da cor: marca de verificação */
+.theme-option input:checked + label::after {
+  content: "✓";
+  font-weight: 800;
+  color: var(--color-action);
+}
+
+.swatches {
+  display: inline-flex;
+}
+
+.swatches span {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  margin-left: -5px;
+}
+
+.swatches span:first-child {
+  margin-left: 0;
+}
+
+/* =========================== Botões =========================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 46px;
+  padding: var(--space-2) var(--space-5);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color var(--transition), border-color var(--transition),
+    color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn--large {
+  min-height: 52px;
+  padding: var(--space-3) var(--space-6);
+  font-size: 16px;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--action {
+  background: var(--color-action);
+  color: var(--color-on-action);
+}
+
+.btn--action:hover:not(:disabled) {
+  background: var(--color-action-hover);
+}
+
+.btn--action-outline {
+  background: transparent;
+  color: var(--color-action);
+  border-color: var(--color-action);
+}
+
+.btn--action-outline:hover:not(:disabled) {
+  background: var(--color-action-soft);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+  border-color: var(--color-disabled-bg);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ============================ Tela inicial ============================ */
+.screen {
+  animation: fade-in 240ms ease both;
+}
+
+#tela-inicial {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.intro__title {
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.intro__text {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+  max-width: 52ch;
+}
+
+.rules {
+  list-style: none;
+  padding: var(--space-5);
+  background: var(--color-surface-alt);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.rules li {
+  position: relative;
+  padding-left: var(--space-5);
+}
+
+.rules li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--color-primary);
+}
+
+.setup {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.difficulty__legend {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.difficulty__options {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.difficulty-option {
+  position: relative;
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.difficulty-option:hover {
+  border-color: var(--color-action);
+}
+
+.difficulty-option input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--color-action);
+  cursor: pointer;
+}
+
+.difficulty-option:has(input:checked) {
+  border-color: var(--color-action);
+  background: var(--color-action-soft);
+}
+
+.difficulty-option__body {
+  display: grid;
+  gap: 2px;
+}
+
+.difficulty-option__name {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+.difficulty-option__desc {
+  color: var(--color-text-muted);
+}
+
+/* ============================ Área da partida ============================ */
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.game {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.game__board {
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+  justify-items: center;
+}
+
+.game__play {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* ------------------------------ Desenho ------------------------------ */
+.hangman {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  overflow: visible;
+}
+
+.hangman__gallows line {
+  stroke: var(--color-gallows);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke var(--transition);
+}
+
+.hangman__gallows .hangman__rope {
+  stroke-width: 3;
+}
+
+.hangman__part {
+  fill: none;
+  stroke: var(--color-figure);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transition: stroke-dashoffset 420ms ease, opacity 120ms ease, stroke var(--transition);
+}
+
+.hangman__part.is-visible {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+.hangman.is-won .hangman__part {
+  stroke: var(--color-success);
+}
+
+.attempts {
+  width: 100%;
+  text-align: center;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.attempts__text strong {
+  font-size: 16px;
+}
+
+.attempts__sep {
+  margin: 0 var(--space-1);
+}
+
+.attempts__meter {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.attempts__meter span {
+  width: 28px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-border);
+  transition: background-color var(--transition);
+}
+
+.attempts__meter span.is-used {
+  background: var(--color-danger-border);
+}
+
+/* ---------------------------- Dica e categoria ---------------------------- */
+.clue {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3) var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.clue__item--hint {
+  grid-column: 1 / -1;
+}
+
+.clue dt {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-text-muted);
+}
+
+.clue dd {
+  font-weight: 600;
+}
+
+#info-nivel {
+  display: inline-block;
+  padding: 0 var(--space-3);
+  border-radius: 999px;
+  background: var(--color-action);
+  color: var(--color-on-action);
+  font-size: 13px;
+}
+
+#info-dica {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* ------------------------------ Palavra ------------------------------ */
+.word-wrap {
+  padding: var(--space-4) 0;
+}
+
+/*
+  A palavra é um container de consulta (container query). Cada lacuna se
+  ajusta à largura disponível de acordo com --n (maior grupo de letras),
+  então palavras longas cabem no celular sem cortar letras.
+*/
+.word {
+  container-type: inline-size;
+  --gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3) var(--space-5);
+}
+
+.word--long {
+  --gap: 4px;
+}
+
+.word__group {
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: nowrap;
+}
+
+.word__slot {
+  --slot: 2.6rem;
+  --slot: min(2.75rem, calc((100cqi - (var(--n, 8) - 1) * var(--gap)) / var(--n, 8)));
+  width: var(--slot);
+  height: calc(var(--slot) * 1.25);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+  border-bottom: 3px solid var(--color-text);
+  font-size: calc(var(--slot) * 0.68);
+  line-height: 1;
+  font-weight: 800;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+/* Espaços e hífens são exibidos automaticamente, sem traço inferior */
+.word__slot--symbol {
+  border-bottom-color: transparent;
+  color: var(--color-text-muted);
+}
+
+/* Navegadores sem container queries usam um tamanho fixo menor */
+@supports not (width: 1cqi) {
+  .word__slot { --slot: 1.9rem; }
+}
+
+.word__slot.is-revealed {
+  animation: reveal 280ms ease both;
+}
+
+/* Letras não descobertas mostradas na derrota */
+.word__slot.is-missed {
+  color: var(--color-danger-text);
+  border-bottom-color: var(--color-danger-border);
+  border-bottom-style: dashed;
+  animation: reveal 280ms ease both;
+}
+
+/* ------------------------------ Feedback ------------------------------ */
+.feedback {
+  min-height: 24px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.feedback.is-hit { color: var(--color-success); }
+.feedback.is-miss { color: var(--color-danger-text); }
+
+/* ------------------------------ Resultado ------------------------------ */
+.result {
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border);
+  border-left-width: 6px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  display: grid;
+  gap: var(--space-3);
+  animation: fade-in 260ms ease both;
+}
+
+.result.is-won { border-left-color: var(--color-success); }
+.result.is-lost { border-left-color: var(--color-danger-border); }
+
+.result__title {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.result__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+
+.result__details dt {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-text-muted);
+}
+
+.result__details dd {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  overflow-wrap: anywhere;
+}
+
+.result__explanation {
+  color: var(--color-text);
+}
+
+.result__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* ------------------------------ Teclado ------------------------------ */
+.keyboard-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.legend-key {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.legend-key--hit {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-on-success);
+}
+
+.legend-key--miss {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger-text);
+  text-decoration: line-through;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.key {
+  position: relative;
+  min-height: 48px;
+  padding: 0;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition), border-color var(--transition),
+    color var(--transition), transform var(--transition);
+}
+
+.key:hover:not([aria-disabled="true"]) {
+  border-color: var(--color-action);
+  background: var(--color-action-soft);
+  transform: translateY(-1px);
+}
+
+/* Pequeno símbolo no canto, além da cor, para indicar o estado */
+.key__mark {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.key.is-hit {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-on-success);
+  box-shadow: none;
+}
+
+.key.is-miss {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+  border-style: dashed;
+  color: var(--color-danger-text);
+  box-shadow: none;
+}
+
+.key.is-miss .key__letter {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.key[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Teclas ainda livres quando a partida termina */
+.key.is-locked {
+  background: var(--color-disabled-bg);
+  border-color: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+  box-shadow: none;
+}
+
+.game__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.game__actions .btn {
+  flex: 1 1 180px;
+}
+
+/* ============================== Rodapé ============================== */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 13px;
+  padding: var(--space-4) 0;
+}
+
+/* ============================== Animações ============================== */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(8px) scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================== Responsivo ============================== */
+@media (max-width: 900px) {
+  #tela-inicial,
+  .game {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hangman {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  h1, .brand__title { font-size: 30px; line-height: 38px; }
+  h2, .intro__title { font-size: 24px; line-height: 32px; }
+  h3 { font-size: 22px; line-height: 30px; }
+  .brand__subtitle { font-size: 15px; line-height: 20px; }
+
+  main.container {
+    padding-top: var(--space-5);
+  }
+
+  .site-header__inner {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+  }
+
+  .setup,
+  .game__board,
+  .rules {
+    padding: var(--space-4);
+  }
+
+  .clue {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .hangman {
+    max-width: 170px;
+  }
+
+  .keyboard {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .key {
+    min-height: 46px;
+  }
+
+  .result__title {
+    font-size: 19px;
+    line-height: 26px;
+  }
+
+  .result__actions .btn,
+  .btn--large {
+    width: 100%;
+  }
+}
