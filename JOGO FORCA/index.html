@@ -17,11 +17,17 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header">
+  <!-- O cabeçalho fica oculto durante a abertura para não repetir logo e título -->
+  <header class="site-header" id="cabecalho" hidden>
     <div class="container site-header__inner">
       <div class="brand">
-        <h1 class="brand__title">Forca do Conhecimento</h1>
-        <p class="brand__subtitle">Cursos e profissões do SENAI</p>
+        <span class="brand__logo">
+          <img src="logo-mundo-senai.png" alt="Mundo SENAI" width="674" height="322">
+        </span>
+        <div class="brand__text">
+          <h1 class="brand__title">Forca do Conhecimento</h1>
+          <p class="brand__subtitle">Cursos e profissões do SENAI</p>
+        </div>
       </div>
 
       <!-- Seletor de tema: visível na tela inicial e durante a partida -->
@@ -34,157 +40,224 @@
     </div>
   </header>
 
-  <main id="conteudo" class="container">
-    <!-- ===================== TELA INICIAL ===================== -->
-    <section id="tela-inicial" class="screen" aria-labelledby="titulo-inicial">
-      <div class="intro">
-        <h2 id="titulo-inicial" class="intro__title" tabindex="-1">Descubra a palavra escondida</h2>
-        <p class="intro__text">
-          Cada palavra está ligada a cursos, profissões e áreas de atuação da formação profissional e industrial.
-          Use a categoria e a dica para chegar à resposta.
-        </p>
-        <ul class="rules">
-          <li>Escolha uma letra pelo teclado da tela ou do computador.</li>
-          <li>Letras certas aparecem em todas as posições da palavra. Acentos e cedilha contam: a letra C também revela Ç.</li>
-          <li>Cada letra errada desenha uma parte do personagem. Com 6 erros, a partida termina.</li>
-          <li>Descubra todas as letras antes disso para vencer.</li>
-        </ul>
+  <main id="conteudo">
+    <!-- ===================== ABERTURA ===================== -->
+    <section id="tela-abertura" class="splash" aria-labelledby="titulo-abertura">
+      <!-- Fundo com formas geométricas (decorativo) -->
+      <div class="splash__bg" aria-hidden="true">
+        <span class="shape shape--grid"></span>
+        <span class="shape shape--ring"></span>
+        <span class="shape shape--disc"></span>
+        <span class="shape shape--diamond"></span>
+        <span class="shape shape--dots"></span>
+        <span class="shape shape--bar"></span>
       </div>
 
-      <form id="form-inicio" class="setup" novalidate>
-        <fieldset class="difficulty">
-          <legend class="difficulty__legend">Escolha a dificuldade</legend>
-          <div class="difficulty__options">
-            <label class="difficulty-option">
-              <input type="radio" name="dificuldade" value="facil" checked>
-              <span class="difficulty-option__body">
-                <span class="difficulty-option__name">Fácil</span>
-                <span class="difficulty-option__desc">Palavras de 4 a 6 letras, com termos do dia a dia das oficinas.</span>
-              </span>
-            </label>
-            <label class="difficulty-option">
-              <input type="radio" name="dificuldade" value="medio">
-              <span class="difficulty-option__body">
-                <span class="difficulty-option__name">Médio</span>
-                <span class="difficulty-option__desc">Palavras de 7 a 9 letras, com vocabulário profissional intermediário.</span>
-              </span>
-            </label>
-            <label class="difficulty-option">
-              <input type="radio" name="dificuldade" value="dificil">
-              <span class="difficulty-option__body">
-                <span class="difficulty-option__name">Difícil</span>
-                <span class="difficulty-option__desc">Palavras com 10 letras ou mais, incluindo termos técnicos.</span>
-              </span>
-            </label>
+      <div class="container splash__content">
+        <div class="splash__intro">
+          <img class="splash__logo" src="logo-mundo-senai.png" alt="Logotipo Mundo SENAI" width="674" height="322">
+
+          <h1 id="titulo-abertura" class="splash__title" tabindex="-1">
+            Forca do <span class="splash__title-accent">Conhecimento</span>
+          </h1>
+          <p class="splash__tagline">Cada letra é uma pista. Descubra seu próximo desafio.</p>
+
+          <!-- Palavra ilustrativa: não pertence ao banco do jogo -->
+          <div class="splash__word" aria-hidden="true">
+            <span>S</span><span>E</span><span>N</span><span class="is-empty"></span><span>I</span>
           </div>
-        </fieldset>
 
-        <button type="submit" class="btn btn--primary btn--large" id="btn-iniciar">Iniciar jogo</button>
-      </form>
-    </section>
+          <div class="splash__cta">
+            <button type="button" class="btn-enter" id="btn-entrar">
+              ENTRAR
+              <svg class="btn-enter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 12h13M13 6l6 6-6 6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
 
-    <!-- ===================== ÁREA DA PARTIDA ===================== -->
-    <section id="tela-jogo" class="screen" aria-labelledby="titulo-jogo" hidden>
-      <h2 id="titulo-jogo" class="visually-hidden" tabindex="-1">Partida em andamento</h2>
-
-      <div class="game">
-        <!-- Coluna 1: desenho e contagem de erros -->
-        <div class="game__board panel">
-          <svg id="forca" class="hangman" viewBox="0 0 200 240" role="img" aria-labelledby="forca-titulo">
-            <title id="forca-titulo">Forca: nenhuma parte do personagem desenhada</title>
-            <!-- Estrutura fixa da forca -->
-            <g class="hangman__gallows">
-              <line x1="16" y1="228" x2="124" y2="228"/>
-              <line x1="46" y1="228" x2="46" y2="16"/>
-              <line x1="46" y1="16" x2="134" y2="16"/>
-              <line x1="46" y1="50" x2="80" y2="16"/>
-              <line class="hangman__rope" x1="134" y1="16" x2="134" y2="44"/>
-            </g>
-            <!-- Partes do personagem, na ordem em que aparecem -->
-            <g class="hangman__figure">
-              <circle class="hangman__part" data-part="0" cx="134" cy="64" r="20" pathLength="1"/>
-              <line class="hangman__part" data-part="1" x1="134" y1="84" x2="134" y2="148" pathLength="1"/>
-              <line class="hangman__part" data-part="2" x1="134" y1="102" x2="108" y2="130" pathLength="1"/>
-              <line class="hangman__part" data-part="3" x1="134" y1="102" x2="160" y2="130" pathLength="1"/>
-              <line class="hangman__part" data-part="4" x1="134" y1="148" x2="112" y2="190" pathLength="1"/>
-              <line class="hangman__part" data-part="5" x1="134" y1="148" x2="156" y2="190" pathLength="1"/>
+        <!-- Ilustração da forca e peças de letras (decorativas) -->
+        <div class="splash__art" aria-hidden="true">
+          <svg class="splash__gallows" viewBox="0 0 260 300" focusable="false">
+            <path style="--d: 200ms" pathLength="1" d="M28 276 H232"/>
+            <path style="--d: 600ms" pathLength="1" d="M72 276 V32"/>
+            <path style="--d: 1000ms" pathLength="1" d="M72 32 H186"/>
+            <path style="--d: 1300ms" pathLength="1" d="M72 78 L118 32"/>
+            <g class="splash__swing">
+              <path class="splash__rope" style="--d: 1500ms" pathLength="1" d="M186 32 V96"/>
+              <g class="splash__hang-tile">
+                <rect x="154" y="96" width="64" height="64" rx="14"/>
+                <text x="186" y="141" text-anchor="middle">?</text>
+              </g>
             </g>
           </svg>
 
-          <div class="attempts">
-            <p class="attempts__text">
-              Erros: <strong id="contador-erros">0</strong> de 6
-              <span class="attempts__sep" aria-hidden="true">·</span>
-              Tentativas restantes: <strong id="contador-restantes">6</strong>
-            </p>
-            <div class="attempts__meter" id="medidor-erros" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Coluna 2: informações e interação -->
-        <div class="game__play">
-          <dl class="clue">
-            <div class="clue__item">
-              <dt>Nível</dt>
-              <dd id="info-nivel">Fácil</dd>
-            </div>
-            <div class="clue__item">
-              <dt>Categoria</dt>
-              <dd id="info-categoria">—</dd>
-            </div>
-            <div class="clue__item clue__item--hint">
-              <dt>Dica</dt>
-              <dd id="info-dica">—</dd>
-            </div>
-          </dl>
-
-          <!-- Palavra: as lacunas são visuais; leitores de tela recebem a descrição abaixo -->
-          <div class="word-wrap">
-            <div id="palavra" class="word" aria-hidden="true"></div>
-            <p id="palavra-descricao" class="visually-hidden"></p>
-          </div>
-
-          <!-- Mensagens de acerto, erro e resultado -->
-          <p id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
-
-          <!-- Resultado da partida -->
-          <section id="resultado" class="result" aria-labelledby="resultado-titulo" hidden>
-            <h3 id="resultado-titulo" class="result__title" tabindex="-1"></h3>
-            <dl class="result__details">
-              <div>
-                <dt>Palavra</dt>
-                <dd id="resultado-palavra"></dd>
-              </div>
-              <div>
-                <dt>Categoria</dt>
-                <dd id="resultado-categoria"></dd>
-              </div>
-            </dl>
-            <p id="resultado-explicacao" class="result__explanation"></p>
-            <div class="result__actions">
-              <button type="button" class="btn btn--primary" id="btn-jogar-novamente">Jogar novamente</button>
-              <button type="button" class="btn btn--action" id="btn-escolher-dificuldade">Escolher dificuldade</button>
-            </div>
-          </section>
-
-          <div class="keyboard-legend" aria-hidden="true">
-            <span class="legend-item"><span class="legend-key">A</span> disponível</span>
-            <span class="legend-item"><span class="legend-key legend-key--hit">✓ A</span> correta</span>
-            <span class="legend-item"><span class="legend-key legend-key--miss">✕ A</span> incorreta</span>
-          </div>
-          <div id="teclado" class="keyboard" role="group" aria-label="Teclado virtual de A a Z">
-            <!-- Teclas geradas pelo script.js -->
-          </div>
-
-          <div class="game__actions">
-            <button type="button" class="btn btn--primary" id="btn-nova-palavra">Nova palavra</button>
-            <button type="button" class="btn btn--action-outline" id="btn-voltar">Voltar ao início</button>
-          </div>
+          <span class="float-tile float-tile--hit" style="--d: 300ms; --r: -8deg; top: 4%; left: 4%;">A</span>
+          <span class="float-tile float-tile--primary" style="--d: 450ms; --r: 6deg; top: 0; right: 10%;">Ç</span>
+          <span class="float-tile" style="--d: 600ms; --r: 4deg; top: 42%; left: 0;">E</span>
+          <span class="float-tile float-tile--miss" style="--d: 750ms; --r: -5deg; top: 36%; right: 0;">X</span>
+          <span class="float-tile float-tile--action" style="--d: 900ms; --r: -4deg; bottom: 12%; left: 6%;">T</span>
+          <span class="float-tile" style="--d: 1050ms; --r: 7deg; bottom: 4%; right: 8%;">R</span>
         </div>
       </div>
     </section>
+
+    <div class="container main__screens" id="telas-jogo" hidden>
+      <!-- ===================== TELA INICIAL ===================== -->
+      <section id="tela-inicial" class="screen" aria-labelledby="titulo-inicial" hidden>
+        <div class="intro">
+          <button type="button" class="link-back" id="btn-voltar-abertura">
+            <span aria-hidden="true">←</span> Voltar à abertura
+          </button>
+          <h2 id="titulo-inicial" class="intro__title" tabindex="-1">Descubra a palavra escondida</h2>
+          <p class="intro__text">
+            Cada palavra está ligada a cursos, profissões e áreas de atuação da formação profissional e industrial.
+            Use a categoria e a dica para chegar à resposta.
+          </p>
+          <ul class="rules">
+            <li>Escolha uma letra pelo teclado da tela ou do computador.</li>
+            <li>Letras certas aparecem em todas as posições da palavra. Acentos e cedilha contam: a letra C também revela Ç.</li>
+            <li>Cada letra errada desenha uma parte do personagem. Com 6 erros, a partida termina.</li>
+            <li>Descubra todas as letras antes disso para vencer.</li>
+          </ul>
+        </div>
+
+        <form id="form-inicio" class="setup" novalidate>
+          <fieldset class="difficulty">
+            <legend class="difficulty__legend">Escolha a dificuldade</legend>
+            <div class="difficulty__options">
+              <label class="difficulty-option">
+                <input type="radio" name="dificuldade" value="facil" checked>
+                <span class="difficulty-option__body">
+                  <span class="difficulty-option__name">Fácil</span>
+                  <span class="difficulty-option__desc">Palavras de 4 a 6 letras, com termos do dia a dia das oficinas.</span>
+                </span>
+              </label>
+              <label class="difficulty-option">
+                <input type="radio" name="dificuldade" value="medio">
+                <span class="difficulty-option__body">
+                  <span class="difficulty-option__name">Médio</span>
+                  <span class="difficulty-option__desc">Palavras de 7 a 9 letras, com vocabulário profissional intermediário.</span>
+                </span>
+              </label>
+              <label class="difficulty-option">
+                <input type="radio" name="dificuldade" value="dificil">
+                <span class="difficulty-option__body">
+                  <span class="difficulty-option__name">Difícil</span>
+                  <span class="difficulty-option__desc">Palavras com 10 letras ou mais, incluindo termos técnicos.</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn--primary btn--large" id="btn-iniciar">Iniciar jogo</button>
+        </form>
+      </section>
+
+      <!-- ===================== ÁREA DA PARTIDA ===================== -->
+      <section id="tela-jogo" class="screen" aria-labelledby="titulo-jogo" hidden>
+        <h2 id="titulo-jogo" class="visually-hidden" tabindex="-1">Partida em andamento</h2>
+
+        <div class="game">
+          <!-- Coluna 1: desenho e contagem de erros -->
+          <div class="game__board panel">
+            <svg id="forca" class="hangman" viewBox="0 0 200 240" role="img" aria-labelledby="forca-titulo">
+              <title id="forca-titulo">Forca: nenhuma parte do personagem desenhada</title>
+              <!-- Estrutura fixa da forca -->
+              <g class="hangman__gallows">
+                <line x1="16" y1="228" x2="124" y2="228"/>
+                <line x1="46" y1="228" x2="46" y2="16"/>
+                <line x1="46" y1="16" x2="134" y2="16"/>
+                <line x1="46" y1="50" x2="80" y2="16"/>
+                <line class="hangman__rope" x1="134" y1="16" x2="134" y2="44"/>
+              </g>
+              <!-- Partes do personagem, na ordem em que aparecem -->
+              <g class="hangman__figure">
+                <circle class="hangman__part" data-part="0" cx="134" cy="64" r="20" pathLength="1"/>
+                <line class="hangman__part" data-part="1" x1="134" y1="84" x2="134" y2="148" pathLength="1"/>
+                <line class="hangman__part" data-part="2" x1="134" y1="102" x2="108" y2="130" pathLength="1"/>
+                <line class="hangman__part" data-part="3" x1="134" y1="102" x2="160" y2="130" pathLength="1"/>
+                <line class="hangman__part" data-part="4" x1="134" y1="148" x2="112" y2="190" pathLength="1"/>
+                <line class="hangman__part" data-part="5" x1="134" y1="148" x2="156" y2="190" pathLength="1"/>
+              </g>
+            </svg>
+
+            <div class="attempts">
+              <p class="attempts__text">
+                Erros: <strong id="contador-erros">0</strong> de 6
+                <span class="attempts__sep" aria-hidden="true">·</span>
+                Tentativas restantes: <strong id="contador-restantes">6</strong>
+              </p>
+              <div class="attempts__meter" id="medidor-erros" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 2: informações e interação -->
+          <div class="game__play">
+            <dl class="clue">
+              <div class="clue__item">
+                <dt>Nível</dt>
+                <dd id="info-nivel">Fácil</dd>
+              </div>
+              <div class="clue__item">
+                <dt>Categoria</dt>
+                <dd id="info-categoria">—</dd>
+              </div>
+              <div class="clue__item clue__item--hint">
+                <dt>Dica</dt>
+                <dd id="info-dica">—</dd>
+              </div>
+            </dl>
+
+            <!-- Palavra: as lacunas são visuais; leitores de tela recebem a descrição abaixo -->
+            <div class="word-wrap">
+              <div id="palavra" class="word" aria-hidden="true"></div>
+              <p id="palavra-descricao" class="visually-hidden"></p>
+            </div>
+
+            <!-- Mensagens de acerto, erro e resultado -->
+            <p id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+
+            <!-- Resultado da partida -->
+            <section id="resultado" class="result" aria-labelledby="resultado-titulo" hidden>
+              <h3 id="resultado-titulo" class="result__title" tabindex="-1"></h3>
+              <dl class="result__details">
+                <div>
+                  <dt>Palavra</dt>
+                  <dd id="resultado-palavra"></dd>
+                </div>
+                <div>
+                  <dt>Categoria</dt>
+                  <dd id="resultado-categoria"></dd>
+                </div>
+              </dl>
+              <p id="resultado-explicacao" class="result__explanation"></p>
+              <div class="result__actions">
+                <button type="button" class="btn btn--primary" id="btn-jogar-novamente">Jogar novamente</button>
+                <button type="button" class="btn btn--action" id="btn-escolher-dificuldade">Escolher dificuldade</button>
+              </div>
+            </section>
+
+            <div class="keyboard-legend" aria-hidden="true">
+              <span class="legend-item"><span class="legend-key">A</span> disponível</span>
+              <span class="legend-item"><span class="legend-key legend-key--hit">✓ A</span> correta</span>
+              <span class="legend-item"><span class="legend-key legend-key--miss">✕ A</span> incorreta</span>
+            </div>
+            <div id="teclado" class="keyboard" role="group" aria-label="Teclado virtual de A a Z">
+              <!-- Teclas geradas pelo script.js -->
+            </div>
+
+            <div class="game__actions">
+              <button type="button" class="btn btn--primary" id="btn-nova-palavra">Nova palavra</button>
+              <button type="button" class="btn btn--action-outline" id="btn-voltar">Voltar ao início</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">

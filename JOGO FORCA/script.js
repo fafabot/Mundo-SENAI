@@ -719,10 +719,22 @@ function announce(message, tone) {
   els.feedback.textContent = message;
 }
 
+/*
+  Mostra uma das telas: "abertura", "inicio" (dificuldade) ou "jogo".
+  As demais recebem hidden, então não recebem foco nem aparecem para leitores de tela.
+*/
 function showScreen(name) {
-  const isGame = name === "jogo";
-  els.startScreen.hidden = isGame;
-  els.gameScreen.hidden = !isGame;
+  const isSplash = name === "abertura";
+  els.splashScreen.hidden = !isSplash;
+  els.splashScreen.classList.remove("is-leaving");
+  els.header.hidden = isSplash;
+  els.screensWrap.hidden = isSplash;
+  els.startScreen.hidden = name !== "inicio";
+  els.gameScreen.hidden = name !== "jogo";
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 /* ==========================================================================
@@ -750,6 +762,33 @@ function startRound(level) {
   announce(`Nova palavra com ${total} letras. Você tem ${MAX_ERRORS} tentativas.`, "");
 
   showScreen("jogo");
+}
+
+/* Abertura -> seleção de dificuldade, com saída suave (sem iniciar partida) */
+let isLeavingSplash = false;
+
+function enterFromSplash() {
+  if (isLeavingSplash) return;
+  isLeavingSplash = true;
+
+  const finish = () => {
+    isLeavingSplash = false;
+    showScreen("inicio");
+    els.startTitle.focus();
+  };
+
+  if (prefersReducedMotion()) {
+    finish();
+  } else {
+    els.splashScreen.classList.add("is-leaving");
+    window.setTimeout(finish, 280);
+  }
+}
+
+function goToSplash() {
+  state.active = false;
+  showScreen("abertura");
+  els.splashTitle.focus();
 }
 
 function goToStart() {
@@ -877,6 +916,9 @@ function handlePhysicalKeyboard(event) {
 }
 
 function bindEvents() {
+  els.enterButton.addEventListener("click", enterFromSplash);
+  els.backToSplashButton.addEventListener("click", goToSplash);
+
   els.startForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const selected = els.startForm.querySelector('input[name="dificuldade"]:checked');
@@ -912,6 +954,12 @@ function bindEvents() {
 }
 
 function cacheElements() {
+  els.header = document.getElementById("cabecalho");
+  els.splashScreen = document.getElementById("tela-abertura");
+  els.splashTitle = document.getElementById("titulo-abertura");
+  els.enterButton = document.getElementById("btn-entrar");
+  els.backToSplashButton = document.getElementById("btn-voltar-abertura");
+  els.screensWrap = document.getElementById("telas-jogo");
   els.startScreen = document.getElementById("tela-inicial");
   els.gameScreen = document.getElementById("tela-jogo");
   els.startTitle = document.getElementById("titulo-inicial");
@@ -954,6 +1002,7 @@ function init() {
   buildThemePicker();
   buildKeyboard();
   bindEvents();
+  showScreen("abertura"); // toda abertura ou recarga começa pela tela de abertura
   // Restaura o tema salvo (ou usa o padrão se não houver/armazenamento indisponível)
   applyTheme(readStorage(THEME_STORAGE_KEY) || DEFAULT_THEME, { persist: false });
 }
