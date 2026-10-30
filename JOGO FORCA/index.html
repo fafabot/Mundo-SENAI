@@ -17,8 +17,7 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- O cabeçalho fica oculto durante a abertura para não repetir logo e título -->
-  <header class="site-header" id="cabecalho" hidden>
+  <header class="site-header" id="cabecalho">
     <div class="container site-header__inner">
       <div class="brand">
         <span class="brand__logo">
@@ -41,75 +40,10 @@
   </header>
 
   <main id="conteudo">
-    <!-- ===================== ABERTURA ===================== -->
-    <section id="tela-abertura" class="splash" aria-labelledby="titulo-abertura">
-      <!-- Fundo com formas geométricas (decorativo) -->
-      <div class="splash__bg" aria-hidden="true">
-        <span class="shape shape--grid"></span>
-        <span class="shape shape--ring"></span>
-        <span class="shape shape--disc"></span>
-        <span class="shape shape--diamond"></span>
-        <span class="shape shape--dots"></span>
-        <span class="shape shape--bar"></span>
-      </div>
-
-      <div class="container splash__content">
-        <div class="splash__intro">
-          <img class="splash__logo" src="logo-mundo-senai.png" alt="Logotipo Mundo SENAI" width="674" height="322">
-
-          <h1 id="titulo-abertura" class="splash__title" tabindex="-1">
-            Forca do <span class="splash__title-accent">Conhecimento</span>
-          </h1>
-          <p class="splash__tagline">Cada letra é uma pista. Descubra seu próximo desafio.</p>
-
-          <!-- Palavra ilustrativa: não pertence ao banco do jogo -->
-          <div class="splash__word" aria-hidden="true">
-            <span>S</span><span>E</span><span>N</span><span class="is-empty"></span><span>I</span>
-          </div>
-
-          <div class="splash__cta">
-            <button type="button" class="btn-enter" id="btn-entrar">
-              ENTRAR
-              <svg class="btn-enter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M5 12h13M13 6l6 6-6 6"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Ilustração da forca e peças de letras (decorativas) -->
-        <div class="splash__art" aria-hidden="true">
-          <svg class="splash__gallows" viewBox="0 0 260 300" focusable="false">
-            <path style="--d: 200ms" pathLength="1" d="M28 276 H232"/>
-            <path style="--d: 600ms" pathLength="1" d="M72 276 V32"/>
-            <path style="--d: 1000ms" pathLength="1" d="M72 32 H186"/>
-            <path style="--d: 1300ms" pathLength="1" d="M72 78 L118 32"/>
-            <g class="splash__swing">
-              <path class="splash__rope" style="--d: 1500ms" pathLength="1" d="M186 32 V96"/>
-              <g class="splash__hang-tile">
-                <rect x="154" y="96" width="64" height="64" rx="14"/>
-                <text x="186" y="141" text-anchor="middle">?</text>
-              </g>
-            </g>
-          </svg>
-
-          <span class="float-tile float-tile--hit" style="--d: 300ms; --r: -8deg; top: 4%; left: 4%;">A</span>
-          <span class="float-tile float-tile--primary" style="--d: 450ms; --r: 6deg; top: 0; right: 10%;">Ç</span>
-          <span class="float-tile" style="--d: 600ms; --r: 4deg; top: 42%; left: 0;">E</span>
-          <span class="float-tile float-tile--miss" style="--d: 750ms; --r: -5deg; top: 36%; right: 0;">X</span>
-          <span class="float-tile float-tile--action" style="--d: 900ms; --r: -4deg; bottom: 12%; left: 6%;">T</span>
-          <span class="float-tile" style="--d: 1050ms; --r: 7deg; bottom: 4%; right: 8%;">R</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="container main__screens" id="telas-jogo" hidden>
+    <div class="container main__screens" id="telas-jogo">
       <!-- ===================== TELA INICIAL ===================== -->
-      <section id="tela-inicial" class="screen" aria-labelledby="titulo-inicial" hidden>
+      <section id="tela-inicial" class="screen" aria-labelledby="titulo-inicial">
         <div class="intro">
-          <button type="button" class="link-back" id="btn-voltar-abertura">
-            <span aria-hidden="true">←</span> Voltar à abertura
-          </button>
           <h2 id="titulo-inicial" class="intro__title" tabindex="-1">Descubra a palavra escondida</h2>
           <p class="intro__text">
             Cada palavra está ligada a cursos, profissões e áreas de atuação da formação profissional e industrial.

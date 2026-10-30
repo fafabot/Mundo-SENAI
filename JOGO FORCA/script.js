@@ -372,16 +372,9 @@ const LEVELS = {
   dificil: { label: "Difícil" }
 };
 
-/* Para incluir um tema: adicione aqui e crie o bloco [data-theme] no CSS */
 const THEMES = [
   { id: "padrao", label: "Padrão", swatches: ["#C1272C", "#164194", "#FFFFFF"] },
-  { id: "escuro", label: "Escuro", swatches: ["#1C1D20", "#3A3C42", "#C9343A"] },
-  { id: "azul", label: "Azul tecnológico", swatches: ["#0B2A5B", "#6FB1F2", "#FFFFFF"] },
-  { id: "azul-escuro", label: "Azul escuro", swatches: ["#111B2E", "#263D5A", "#7DBBFA"] },
-  { id: "verde", label: "Verde", swatches: ["#1E5B3A", "#A9CDA0", "#F6F2E7"] },
-  { id: "verde-escuro", label: "Verde escuro", swatches: ["#14231B", "#2B4935", "#9DD5A8"] },
-  { id: "roxo", label: "Roxo", swatches: ["#4B1D7A", "#C7A9EC", "#F6F3FA"] },
-  { id: "roxo-escuro", label: "Roxo escuro", swatches: ["#21162F", "#45305F", "#C7A9EC"] }
+  { id: "escuro", label: "Escuro", swatches: ["#1C1D20", "#3A3C42", "#C9343A"] }
 ];
 
 const DEFAULT_THEME = "padrao";
@@ -756,27 +749,13 @@ function announce(message, tone) {
   els.feedback.textContent = message;
 }
 
-/*
-  Mostra uma das telas: "abertura", "inicio" (dificuldade) ou "jogo".
-  As demais recebem hidden, então não recebem foco nem aparecem para leitores de tela.
-*/
+/* Mostra a seleção de dificuldade ou a área da partida. */
 function showScreen(name) {
-  const isSplash = name === "abertura";
-  els.splashScreen.hidden = !isSplash;
-  els.splashScreen.classList.remove("is-leaving");
-  els.header.hidden = isSplash;
-  els.screensWrap.hidden = isSplash;
   els.startScreen.hidden = name !== "inicio";
   els.gameScreen.hidden = name !== "jogo";
 }
 
-function prefersReducedMotion() {
-  return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-/* ==========================================================================
-   Controle de partidas
-   ========================================================================== */
+/* Controle de partidas */
 
 /* Inicia uma nova partida no nível informado, limpando todo o estado anterior */
 function startRound(level) {
@@ -801,33 +780,6 @@ function startRound(level) {
   announce(`Nova palavra com ${total} letras. Você tem ${MAX_ERRORS} tentativas.`, "");
 
   showScreen("jogo");
-}
-
-/* Abertura -> seleção de dificuldade, com saída suave (sem iniciar partida) */
-let isLeavingSplash = false;
-
-function enterFromSplash() {
-  if (isLeavingSplash) return;
-  isLeavingSplash = true;
-
-  const finish = () => {
-    isLeavingSplash = false;
-    showScreen("inicio");
-    els.startTitle.focus();
-  };
-
-  if (prefersReducedMotion()) {
-    finish();
-  } else {
-    els.splashScreen.classList.add("is-leaving");
-    window.setTimeout(finish, 280);
-  }
-}
-
-function goToSplash() {
-  state.active = false;
-  showScreen("abertura");
-  els.splashTitle.focus();
 }
 
 function goToStart() {
@@ -956,9 +908,6 @@ function handlePhysicalKeyboard(event) {
 }
 
 function bindEvents() {
-  els.enterButton.addEventListener("click", enterFromSplash);
-  els.backToSplashButton.addEventListener("click", goToSplash);
-
   els.startForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const selected = els.startForm.querySelector('input[name="dificuldade"]:checked');
@@ -1000,12 +949,6 @@ function bindEvents() {
 }
 
 function cacheElements() {
-  els.header = document.getElementById("cabecalho");
-  els.splashScreen = document.getElementById("tela-abertura");
-  els.splashTitle = document.getElementById("titulo-abertura");
-  els.enterButton = document.getElementById("btn-entrar");
-  els.backToSplashButton = document.getElementById("btn-voltar-abertura");
-  els.screensWrap = document.getElementById("telas-jogo");
   els.startScreen = document.getElementById("tela-inicial");
   els.gameScreen = document.getElementById("tela-jogo");
   els.startTitle = document.getElementById("titulo-inicial");
@@ -1050,7 +993,7 @@ function init() {
   buildThemePicker();
   buildKeyboard();
   bindEvents();
-  showScreen("abertura"); // toda abertura ou recarga começa pela tela de abertura
+  showScreen("inicio");
   // Restaura o tema salvo (ou usa o padrão se não houver/armazenamento indisponível)
   applyTheme(readStorage(THEME_STORAGE_KEY) || DEFAULT_THEME, { persist: false });
 }
